@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <div>
+    <%= image_tag 'no_image_book.jpg', size: '80x80'%>
+    <p>Name:<%= user.name %></p>
+    <p>Info：<%= user.introduction %></p>
+  </div>
+<% end %>
