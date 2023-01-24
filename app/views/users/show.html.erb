@@ -1,17 +1,34 @@
 <!-- ユーザーの詳細 -->
 <div>
-  <h3><%= @user.name %></h3>
+  <h2>User info</h2>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <p>name <%= @user.name %></p>
+  <p>introduction <%= @user.introduction %></p>
+  <p><%= link_to "プロフィール編集(後でボタンに変える)", edit_user_path(@user.id) %></p>
 </div>
-
+<br>
+<!-- 投稿フォーム  -->
+<div>
+  <h2>New book</h2>
+    <%= form_with model: @newbook do |f| %>
+      <p>Title</p>
+        <%= f.text_field :title %>
+      <p>Option</p>
+        <%= f.text_area :body %>
+      <%= f.submit 'Create Book' %>
+    <% end %>
+</div>
+<br>
 <!-- ユーザーの投稿一覧 -->
-
+ <h2>Books</h2>
 <% @book.each do |book| %>
 <div>
-  <%= link_to book_path(book.id) do %>
+  <%= link_to user_path(book.user.id) do %>
     <%= image_tag book.user.get_profile_image(100,100) %>
   <% end %>
-  <p>title：<%= book.title %></p>
-  <p>body：<%= book.body %></p>
+  <%= link_to book_path(book.id) do %>
+    <%= book.title %>
+  <% end %>
+  <p><%= book.body %></p>
 </div>
 <% end %>

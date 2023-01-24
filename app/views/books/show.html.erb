@@ -1,9 +1,12 @@
 <div>
+  <h2>Book detail</h2>
   <%= image_tag 'no_image_book.jpg', size: '80x80'%>
   <p>Title:<%= @book.title %></p>
   <p>Body：<%= @book.body %></p>
   <p>投稿者：<%= @book.user.name %></p>
   <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
+    <%= link_to "Edit", edit_book_path(@book) %>
+    |
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
   <% end %>
 </div>
