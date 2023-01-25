@@ -1,9 +1,33 @@
+<!-- ユーザーの詳細 -->
+<div>
+  <h2>User info</h2>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <p>name <%= @user.name %></p>
+  <p>introduction <%= @user.introduction %></p>
+  <p><%= link_to "プロフィール編集(後でボタンに変える)", edit_user_path(current_user.id) %></p>
+</div>
+<br>
+
+<!-- 投稿フォーム  -->
+<div>
+  <h2>New book</h2>
+    <%= form_with model: @newbook do |f| %>
+      <p>Title</p>
+        <%= f.text_field :title %>
+      <p>Option</p>
+        <%= f.text_area :body %>
+      <%= f.submit 'Create Book' %>
+    <% end %>
+</div>
+<br>
+
+<!--book詳細表示-->
 <div>
   <h2>Book detail</h2>
-  <%= image_tag 'no_image_book.jpg', size: '80x80'%>
+  <%= image_tag @book.user.get_profile_image(100,100) %>
   <p>Title:<%= @book.title %></p>
   <p>Body：<%= @book.body %></p>
-  <p>投稿者：<%= @book.user.name %></p>
+  <p>投稿者：<%=link_to "#{@book.user.name}", user_path(@book.user.id) %></p>
   <% if @book.user == current_user %>
     <%= link_to "Edit", edit_book_path(@book) %>
     |
