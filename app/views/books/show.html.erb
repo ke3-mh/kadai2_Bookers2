@@ -31,6 +31,6 @@
   <% if @book.user == current_user %>
     <%= link_to "Edit", edit_book_path(@book) %>
     |
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
+    <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "投稿を削除します。よろしいですか？"} %>
   <% end %>
 </div>
