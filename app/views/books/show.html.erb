@@ -25,7 +25,7 @@
 <div>
   <h2>Book detail</h2>
   <%= image_tag @book.user.get_profile_image(100,100) %>
-  <p>Title:<%= @book.title %></p>
+  <p>Title:<%= link_to "#{@book.title}", book_path(@book.id) %></p>
   <p>Body：<%= @book.body %></p>
   <p>投稿者：<%=link_to "#{@book.user.name}", user_path(@book.user.id) %></p>
   <% if @book.user == current_user %>
