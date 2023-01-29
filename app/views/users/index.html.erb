@@ -1,34 +1,42 @@
-<!-- ユーザーの詳細 -->
-<div>
-  <h2>User info</h2>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p>name <%= @user.name %></p>
-  <p>introduction <%= @user.introduction %></p>
-  <p><%= link_to "プロフィール編集(後でボタンに変える)", edit_user_path(current_user.id) %></p>
-</div>
-<br>
 
-<!-- 投稿フォーム  -->
-<div>
-  <h2>New book</h2>
-    <%= form_with model: @newbook do |f| %>
-      <p>Title</p>
-        <%= f.text_field :title %>
-      <p>Option</p>
-        <%= f.text_area :body %>
-      <%= f.submit 'Create Book' %>
-    <% end %>
-</div>
-<br>
 
-<!--User一覧-->
-<h2>Users</h2>
-<p>image</p>
-<p>name</p>
-<% @users.each do |user| %>
-  <div>
-    <%= image_tag user.get_profile_image(100,100)%>
-    <p>Name:<%= user.name %></p>
-    <p><%= link_to "show", user_path(user.id) %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'books/form', user: @user, newbook: @newbook %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <!--User一覧-->
+      <h2>Users</h2>
+      <table class="table">
+        <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <!--image-->
+                <%= image_tag user.get_profile_image(100,100)%>
+              </td>
+              <td>
+                <!--name-->
+                <%= user.name %>
+              </td>
+              <td>
+                <!--link-->
+                <%= link_to "show", user_path(user.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
   </div>
-<% end %>
+</div>
