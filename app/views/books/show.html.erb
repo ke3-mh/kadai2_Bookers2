@@ -73,7 +73,7 @@
               </td>
                 <% if @book.user == current_user %>
                   <td>
-                    <%= link_to "Edit", edit_book_path(@book), class:"btn btn-success" %>
+                    <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-success" %>
                     <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "投稿を削除します。よろしいですか？"}, class:"btn btn-danger" %>
                   </td>
                 <% end %>
